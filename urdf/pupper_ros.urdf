@@ -1,91 +1,309 @@
 <?xml version="1.0" ?>
 <robot name="pupper_ros">
 
+<material name="black">
+  <color rgba="0.1 0.1 0.1 1.0"/>
+</material>
+
+<material name="blue">
+  <color rgba="0.3 0.5 0.9 1.0"/>
+</material>
+
+<!--  TORSO   -->
+
   <link name="torso">
       <visual>
-        <origin rpy="0 0 0" xyz="0.0 0.0 0.0"/>
+        <origin rpy="0 0 0" xyz="0.0 0.0 0.4"/>
         <geometry>
-          <box size="0.4 0.2 0.05"/>
+          <box size="0.6 0.2 0.15"/>
         </geometry>
-        <material name="blue">
-          <color rgba="0.3 0.5 0.9 1.0"/>
-        </material>
+          <material name="blue"/>
       </visual>
   </link>
 
-  <joint name="leg_f_r_joint" type="continuous">
+<!-- Shoulders -->
+
+  <joint name="shldr_f_r_joint" type="continuous">
     <parent link="torso"/>
+    <child link="shldr_f_r"/>
+    <origin rpy="1.57 0.0 0.0" xyz="0.32 -0.15 0.4"/>
+    <axis xyz="0 0 1"/>
+  </joint>
+
+  <link name="shldr_f_r">
+    <visual>
+      <origin rpy="0 0 0.0" xyz="0 0 0"/>
+      <geometry>
+        <sphere radius="0.06"/>
+      </geometry>
+        <material name="black"/>
+    </visual>
+  </link>
+
+  <joint name="shldr_f_l_joint" type="continuous">
+    <parent link="torso"/>
+    <child link="shldr_f_l"/>
+    <origin rpy="1.57 0.0 0.0" xyz="0.32 0.15 0.4"/>
+    <axis xyz="0 0 1"/>
+  </joint>
+
+  <link name="shldr_f_l">
+    <visual>
+      <origin rpy="0 0 0.0" xyz="0 0 0"/>
+      <geometry>
+        <sphere radius="0.06"/>
+      </geometry>
+        <material name="black"/>
+    </visual>
+  </link>
+
+  <joint name="shldr_b_r_joint" type="continuous">
+    <parent link="torso"/>
+    <child link="shldr_b_r"/>
+    <origin rpy="1.57 0.0 0.0" xyz="-0.32 -0.15 0.4"/>
+    <axis xyz="0 0 1"/>
+  </joint>
+
+  <link name="shldr_b_r">
+    <visual>
+      <origin rpy="0 0 0.0" xyz="0 0 0"/>
+      <geometry>
+        <sphere radius="0.06"/>
+      </geometry>
+        <material name="black"/>
+    </visual>
+  </link>
+
+  <joint name="shldr_b_l_joint" type="continuous">
+    <parent link="torso"/>
+    <child link="shldr_b_l"/>
+    <origin rpy="1.57 0.0 0.0" xyz="-0.32 0.15 0.4"/>
+    <axis xyz="0 0 1"/>
+  </joint>
+
+  <link name="shldr_b_l">
+    <visual>
+      <origin rpy="0 0 0.0" xyz="0 0 0"/>
+      <geometry>
+        <sphere radius="0.06"/>
+      </geometry>
+        <material name="black"/>
+    </visual>
+  </link>
+
+  <!-- forearms -->
+
+  <joint name="forearm_f_r_joint" type="continuous">
+    <parent link="shldr_f_r"/>
+    <child link="forearm_f_r"/>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <axis xyz="0 1 0"/>
+  </joint>
+
+  <link name="forearm_f_r">
+    <visual>
+      <origin rpy="0 0 1.57" xyz="0 -0.12 0"/>
+      <geometry>
+        <box size="0.2 0.05 0.03"/>
+      </geometry>
+        <material name="blue"/>
+    </visual>
+  </link>
+
+  <joint name="forearm_f_l_joint" type="continuous">
+    <parent link="shldr_f_l"/>
+    <child link="forearm_f_l"/>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <axis xyz="0 1 0"/>
+  </joint>
+
+  <link name="forearm_f_l">
+    <visual>
+      <origin rpy="0 0 1.57" xyz="0 -0.12 0"/>
+      <geometry>
+        <box size="0.2 0.05 0.03"/>
+      </geometry>
+        <material name="blue"/>
+    </visual>
+  </link>
+
+  <joint name="forearm_b_r_joint" type="continuous">
+    <parent link="shldr_b_r"/>
+    <child link="forearm_b_r"/>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <axis xyz="0 1 0"/>
+  </joint>
+
+  <link name="forearm_b_r">
+    <visual>
+      <origin rpy="0 0 1.57" xyz="0 -0.12 0"/>
+      <geometry>
+        <box size="0.2 0.05 0.03"/>
+      </geometry>
+        <material name="blue"/>
+    </visual>
+  </link>
+
+  <joint name="forearm_b_l_joint" type="continuous">
+    <parent link="shldr_b_l"/>
+    <child link="forearm_b_l"/>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <axis xyz="0 1 0"/>
+  </joint>
+
+  <link name="forearm_b_l">
+    <visual>
+      <origin rpy="0 0 1.57" xyz="0 -0.12 0"/>
+      <geometry>
+        <box size="0.2 0.05 0.03"/>
+      </geometry>
+        <material name="blue"/>
+    </visual>
+  </link>
+
+  <!-- Legs  -->
+
+  <!-- Front right -->
+
+  <joint name="leg_f_r_joint" type="continuous">
+    <parent link="forearm_f_r"/>
+    <child link="leg_f_r_knee"/>
+    <origin rpy="0 0 0" xyz="0 -0.23 0"/>
+    <axis xyz="0 1 0"/>
+  </joint>
+
+  <link name="leg_f_r_knee">
+    <visual>
+      <origin rpy="0 0 0.0" xyz="0 0 0"/>
+      <geometry>
+        <sphere radius="0.04"/>
+      </geometry>
+        <material name="black"/>
+    </visual>
+  </link>
+
+  <joint name="leg_f_r_knee_joint" type="fixed">
+    <parent link="leg_f_r_knee"/>
     <child link="leg_f_r"/>
-    <origin rpy="0.0 0.0 0.0" xyz="0.1 -0.05 0.0"/>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
     <axis xyz="0 1 0"/>
   </joint>
 
   <link name="leg_f_r">
     <visual>
-      <origin rpy="0 0 0.0" xyz="0.0 0.0 -0.12"/>
+      <origin rpy="0 0 1.57" xyz="0 -0.12 0"/>
       <geometry>
-        <cylinder length="0.3" radius="0.02"/>
+        <box size="0.2 0.05 0.03"/>
       </geometry>
-      <material name="blue">
-	<color rgba="0.3 0.5 0.9 1.0"/>
-      </material>
+        <material name="blue"/>
     </visual>
   </link>
 
-  <joint name="leg_f_l_joint" type="continuous">
-    <parent link="torso"/>
+<!-- Front left -->
+
+<joint name="leg_f_l_joint" type="continuous">
+    <parent link="forearm_f_l"/>
+    <child link="leg_f_l_knee"/>
+    <origin rpy="0 0 0" xyz="0 -0.23 0"/>
+    <axis xyz="0 1 0"/>
+  </joint>
+
+  <link name="leg_f_l_knee">
+    <visual>
+      <origin rpy="0 0 0.0" xyz="0 0 0"/>
+      <geometry>
+        <sphere radius="0.04"/>
+      </geometry>
+        <material name="black"/>
+    </visual>
+  </link>
+
+  <joint name="leg_f_l_knee_joint" type="fixed">
+    <parent link="leg_f_l_knee"/>
     <child link="leg_f_l"/>
-    <origin rpy="0.0 0.0 0.0" xyz="0.1 0.05 0.0"/>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
     <axis xyz="0 1 0"/>
   </joint>
 
   <link name="leg_f_l">
     <visual>
-      <origin rpy="0 0 0.0" xyz="0.0 0.0 -0.12"/>
+      <origin rpy="0 0 1.57" xyz="0 -0.12 0"/>
       <geometry>
-        <cylinder length="0.3" radius="0.02"/>
+        <box size="0.2 0.05 0.03"/>
       </geometry>
-      <material name="blue">
-	<color rgba="0.3 0.5 0.9 1.0"/>
-      </material>
+        <material name="blue"/>
     </visual>
   </link>
 
-    <joint name="leg_b_r_joint" type="continuous">
-    <parent link="torso"/>
+<!-- Back right -->
+
+  <joint name="leg_b_r_joint" type="continuous">
+    <parent link="forearm_b_r"/>
+    <child link="leg_b_r_knee"/>
+    <origin rpy="0 0 0" xyz="0 -0.23 0"/>
+    <axis xyz="0 1 0"/>
+  </joint>
+
+  <link name="leg_b_r_knee">
+    <visual>
+      <origin rpy="0 0 0.0" xyz="0 0 0"/>
+      <geometry>
+        <sphere radius="0.04"/>
+      </geometry>
+        <material name="black"/>
+    </visual>
+  </link>
+
+  <joint name="leg_b_r_knee_joint" type="fixed">
+    <parent link="leg_b_r_knee"/>
     <child link="leg_b_r"/>
-    <origin rpy="0.0 0.0 0.0" xyz="-0.1 -0.05 0.0"/>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
     <axis xyz="0 1 0"/>
   </joint>
 
   <link name="leg_b_r">
     <visual>
-      <origin rpy="0 0 0.0" xyz="0.0 0.0 -0.12"/>
+      <origin rpy="0 0 1.57" xyz="0 -0.12 0"/>
       <geometry>
-        <cylinder length="0.3" radius="0.02"/>
+        <box size="0.2 0.05 0.03"/>
       </geometry>
-      <material name="blue">
-	<color rgba="0.3 0.5 0.9 1.0"/>
-      </material>
+        <material name="blue"/>
     </visual>
   </link>
 
-    <joint name="leg_b_l_joint" type="continuous">
-    <parent link="torso"/>
+<!-- Back left -->
+
+  <joint name="leg_b_l_joint" type="continuous">
+    <parent link="forearm_b_l"/>
+    <child link="leg_b_l_knee"/>
+    <origin rpy="0 0 0" xyz="0 -0.23 0"/>
+    <axis xyz="0 1 0"/>
+  </joint>
+
+  <link name="leg_b_l_knee">
+    <visual>
+      <origin rpy="0 0 0.0" xyz="0 0 0"/>
+      <geometry>
+        <sphere radius="0.04"/>
+      </geometry>
+        <material name="black"/>
+    </visual>
+  </link>
+
+  <joint name="leg_b_l_knee_joint" type="fixed">
+    <parent link="leg_b_l_knee"/>
     <child link="leg_b_l"/>
-    <origin rpy="0.0 0.0 0.0" xyz="-0.1 0.05 0.0"/>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
     <axis xyz="0 1 0"/>
   </joint>
 
   <link name="leg_b_l">
     <visual>
-      <origin rpy="0 0 0.0" xyz="0.0 0.0 -0.12"/>
+      <origin rpy="0 0 1.57" xyz="0 -0.12 0"/>
       <geometry>
-        <cylinder length="0.3" radius="0.02"/>
+        <box size="0.2 0.05 0.03"/>
       </geometry>
-      <material name="blue">
-	<color rgba="0.3 0.5 0.9 1.0"/>
-      </material>
+        <material name="blue"/>
     </visual>
   </link>
 </robot>
