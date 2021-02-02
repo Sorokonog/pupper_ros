@@ -21,7 +21,9 @@ def main(use_imu=False):
     rospy.init_node("pupper_js_pub")
     pub = rospy.Publisher("/pupper_js", JointState, queue_size = 1)
     pupper_js = JointState()
-    pupper_js.name = ["leg_f_r_joint","leg_f_l_joint","leg_b_r_joint","leg_b_l_joint"]
+    pupper_js.name = ["leg_f_r_joint","leg_f_l_joint","leg_b_r_joint","leg_b_l_joint",
+                        "shldr_f_r_joint","shldr_f_l_joint","shldr_b_r_joint","shldr_b_l_joint",
+                        "shldr_f_r_joint_inter","shldr_f_l_joint_inter","shldr_b_r_joint_inter","shldr_b_l_joint_inter"]
 
     # Create config
     config = Configuration()
@@ -84,10 +86,9 @@ def main(use_imu=False):
             controller.run(state, command)
 
             # Update the pwm widths going to the servos
-            pupper_js.position = state.joint_angles[1]
+            pupper_js.position = np.concatenate((state.joint_angles[1],state.joint_angles[0], state.joint_angles[2]),axis=None)
             pub.publish(pupper_js)
-            #rospy.loginfo(state.joint_angles[1])
             hardware_interface.set_actuator_postions(state.joint_angles)
 
-
+            
 main()

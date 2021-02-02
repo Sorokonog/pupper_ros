@@ -44,11 +44,11 @@
       <geometry>
         <cylinder radius="0.05" length="0.1"/>
       </geometry>
-        <material name="black"/>
+        <material name="red"/>
     </visual>
   </link>
 
-  <joint name="shldr_f_r_joint_inter" type="fixed">
+  <joint name="shldr_f_r_joint_inter" type="continuous">
     <parent link="shldr_f_r_1"/>
     <child link="shldr_f_r_2"/>
     <origin rpy="0 1.57 1.57" xyz="0 -0.06 0.1"/>
@@ -61,7 +61,7 @@
       <geometry>
         <cylinder radius="0.05" length="0.066"/>
       </geometry>
-        <material name="black"/>
+        <material name="red"/>
     </visual>
   </link>
 
@@ -80,11 +80,11 @@
       <geometry>
         <cylinder radius="0.05" length="0.1"/>
       </geometry>
-        <material name="black"/>
+        <material name="red"/>
     </visual>
   </link>
 
-  <joint name="shldr_f_l_joint_inter" type="fixed">
+  <joint name="shldr_f_l_joint_inter" type="continuous">
     <parent link="shldr_f_l_1"/>
     <child link="shldr_f_l_2"/>
     <origin rpy="0 1.57 1.57" xyz="0 0.06 0.1"/>
@@ -97,7 +97,7 @@
       <geometry>
         <cylinder radius="0.05" length="0.066"/>
       </geometry>
-        <material name="black"/>
+        <material name="red"/>
     </visual>
   </link>
 
@@ -116,11 +116,11 @@
       <geometry>
         <cylinder radius="0.05" length="0.1"/>
       </geometry>
-        <material name="black"/>
+        <material name="red"/>
     </visual>
   </link>
 
-  <joint name="shldr_b_r_joint_inter" type="fixed">
+  <joint name="shldr_b_r_joint_inter" type="continuous">
     <parent link="shldr_b_r_1"/>
     <child link="shldr_b_r_2"/>
     <origin rpy="0 1.57 1.57" xyz="0 -0.06 -0.1"/>
@@ -133,7 +133,7 @@
       <geometry>
         <cylinder radius="0.05" length="0.066"/>
       </geometry>
-        <material name="black"/>
+        <material name="red"/>
     </visual>
   </link>
 
@@ -152,11 +152,11 @@
       <geometry>
         <cylinder radius="0.05" length="0.1"/>
       </geometry>
-        <material name="black"/>
+        <material name="red"/>
     </visual>
   </link>
 
-  <joint name="shldr_b_l_joint_inter" type="fixed">
+  <joint name="shldr_b_l_joint_inter" type="continuous">
     <parent link="shldr_b_l_1"/>
     <child link="shldr_b_l_2"/>
     <origin rpy="0 1.57 1.57" xyz="0 0.06 -0.1"/>
@@ -169,13 +169,13 @@
       <geometry>
         <cylinder radius="0.05" length="0.066"/>
       </geometry>
-        <material name="black"/>
+        <material name="red"/>
     </visual>
   </link>
 
   <!-- forearms -->
 
-  <joint name="forearm_f_r_joint" type="continuous">
+  <joint name="forearm_f_r_joint" type="fixed">
     <parent link="shldr_f_r_2"/>
     <child link="forearm_f_r"/>
     <origin rpy="0 0 0" xyz="0 0 0"/>
@@ -192,7 +192,7 @@
     </visual>
   </link>
 
-  <joint name="forearm_f_l_joint" type="continuous">
+  <joint name="forearm_f_l_joint" type="fixed">
     <parent link="shldr_f_l_2"/>
     <child link="forearm_f_l"/>
     <origin rpy="0 0 0" xyz="0 0 0"/>
@@ -209,7 +209,7 @@
     </visual>
   </link>
 
-  <joint name="forearm_b_r_joint" type="continuous">
+  <joint name="forearm_b_r_joint" type="fixed">
     <parent link="shldr_b_r_2"/>
     <child link="forearm_b_r"/>
     <origin rpy="0 0 0" xyz="0 0 0"/>
@@ -226,7 +226,7 @@
     </visual>
   </link>
 
-  <joint name="forearm_b_l_joint" type="continuous">
+  <joint name="forearm_b_l_joint" type="fixed">
     <parent link="shldr_b_l_2"/>
     <child link="forearm_b_l"/>
     <origin rpy="0 0 0" xyz="0 0 0"/>
@@ -250,8 +250,8 @@
   <joint name="leg_f_r_joint" type="continuous">
     <parent link="forearm_f_r"/>
     <child link="leg_f_r_knee"/>
-    <origin rpy="0 0 0" xyz="0 -0.23 0"/>
-    <axis xyz="0 1 0"/>
+    <origin rpy="0 0 1" xyz="0 -0.23 0"/>
+    <axis xyz="0 0 1"/>
   </joint>
 
   <link name="leg_f_r_knee">
@@ -260,7 +260,7 @@
       <geometry>
         <cylinder radius="0.05" length="0.066"/>
       </geometry>
-        <material name="black"/>
+        <material name="red"/>
     </visual>
   </link>
 
@@ -268,7 +268,7 @@
     <parent link="leg_f_r_knee"/>
     <child link="leg_f_r"/>
     <origin rpy="0 0 0" xyz="0 0 0"/>
-    <axis xyz="0 1 0"/>
+    <axis xyz="0 0 1"/>
   </joint>
 
   <link name="leg_f_r">
@@ -286,8 +286,8 @@
 <joint name="leg_f_l_joint" type="continuous">
     <parent link="forearm_f_l"/>
     <child link="leg_f_l_knee"/>
-    <origin rpy="0 0 0" xyz="0 -0.23 0"/>
-    <axis xyz="0 1 0"/>
+    <origin rpy="0 0 1" xyz="0 -0.23 0"/>
+    <axis xyz="0 0 1"/>
   </joint>
 
   <link name="leg_f_l_knee">
@@ -296,7 +296,7 @@
       <geometry>
         <cylinder radius="0.05" length="0.066"/>
       </geometry>
-        <material name="black"/>
+        <material name="red"/>
     </visual>
   </link>
 
@@ -304,7 +304,7 @@
     <parent link="leg_f_l_knee"/>
     <child link="leg_f_l"/>
     <origin rpy="0 0 0" xyz="0 0 0"/>
-    <axis xyz="0 1 0"/>
+    <axis xyz="0 0 1"/>
   </joint>
 
   <link name="leg_f_l">
@@ -322,8 +322,8 @@
   <joint name="leg_b_r_joint" type="continuous">
     <parent link="forearm_b_r"/>
     <child link="leg_b_r_knee"/>
-    <origin rpy="0 0 0" xyz="0 -0.23 0"/>
-    <axis xyz="0 1 0"/>
+    <origin rpy="0 0 1" xyz="0 -0.23 0"/>
+    <axis xyz="0 0 1"/>
   </joint>
 
   <link name="leg_b_r_knee">
@@ -332,7 +332,7 @@
       <geometry>
         <cylinder radius="0.05" length="0.066"/>
       </geometry>
-        <material name="black"/>
+        <material name="red"/>
     </visual>
   </link>
 
@@ -340,7 +340,7 @@
     <parent link="leg_b_r_knee"/>
     <child link="leg_b_r"/>
     <origin rpy="0 0 0" xyz="0 0 0"/>
-    <axis xyz="0 1 0"/>
+    <axis xyz="0 0 1"/>
   </joint>
 
   <link name="leg_b_r">
@@ -358,8 +358,8 @@
   <joint name="leg_b_l_joint" type="continuous">
     <parent link="forearm_b_l"/>
     <child link="leg_b_l_knee"/>
-    <origin rpy="0 0 0" xyz="0 -0.23 0"/>
-    <axis xyz="0 1 0"/>
+    <origin rpy="0 0 1" xyz="0 -0.23 0"/>
+    <axis xyz="0 0 1"/>
   </joint>
 
   <link name="leg_b_l_knee">
@@ -368,7 +368,7 @@
       <geometry>
         <cylinder radius="0.05" length="0.066"/>
       </geometry>
-        <material name="black"/>
+        <material name="red"/>
     </visual>
   </link>
 
@@ -376,7 +376,7 @@
     <parent link="leg_b_l_knee"/>
     <child link="leg_b_l"/>
     <origin rpy="0 0 0" xyz="0 0 0"/>
-    <axis xyz="0 1 0"/>
+    <axis xyz="0 0 1"/>
   </joint>
 
   <link name="leg_b_l">
